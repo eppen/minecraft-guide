@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="我的世界（Minecraft）完整玩法介绍与攻略指南，涵盖生存、建造、红石、下界与末地等内容。">
+  <meta name="description" content="我的世界（Minecraft）完整玩法介绍与攻略指南，涵盖生存、建造、红石、下界与末地，以及 Steve AI 模组使用实践。">
   <title>我的世界 · 玩法与攻略指南</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
         <li><a href="#craft">合成指南</a></li>
         <li><a href="#build">建造技巧</a></li>
         <li><a href="#advanced">进阶内容</a></li>
+        <li><a href="#ai">AI 助手</a></li>
       </ul>
     </nav>
   </header>
@@ -79,6 +80,7 @@
         <button class="tag" data-search="下界">下界</button>
         <button class="tag" data-search="末影龙">末影龙</button>
         <button class="tag" data-search="红石">红石</button>
+        <button class="tag" data-search="Steve AI">Steve</button>
       </div>
     </section>
 
@@ -673,6 +675,230 @@
               <li><strong>T _flip_flop</strong>：用按钮实现开关切换，入门必学</li>
             </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Module: Steve -->
+    <section class="section section-alt" id="ai">
+      <div class="container">
+        <div class="section-header">
+          <h2>AI 助手 · Steve</h2>
+          <p>用自然语言指挥 AI 代理在 Minecraft 中挖矿、建造、战斗——「Cursor for Minecraft」</p>
+        </div>
+
+        <div class="ai-banner card" data-keywords="Steve AI 模组 人工智能 代理">
+          <div class="ai-banner-content">
+            <span class="ai-badge">开源项目</span>
+            <h3>Steve — 自主 AI 代理模组</h3>
+            <p>
+              <a href="https://github.com/YuvDwi/Steve" target="_blank" rel="noopener">Steve</a>
+              由 Yuvraj Dwivedi 与 Pravin Lohani 开发，将大语言模型（LLM）接入 Minecraft，
+              让 AI 代理像真实玩家一样在世界中执行指令。你描述需求，Steve 理解上下文、制定计划并逐 tick 执行——
+              不是写代码的 AI，而是在游戏里帮你干活的 AI。
+            </p>
+            <div class="ai-links">
+              <a href="https://github.com/YuvDwi/Steve" target="_blank" rel="noopener" class="btn btn-primary">GitHub 仓库</a>
+              <a href="https://modrinth.com/mod/steve-ai" target="_blank" rel="noopener" class="btn btn-outline">Modrinth 下载</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card ai-version-card" data-keywords="Steve 版本 Forge 对应 兼容">
+          <h4>版本对应关系</h4>
+          <p class="version-intro">以下版本信息来自 Steve 官方仓库的 <code>mods.toml</code> 与 <code>build.gradle</code>，安装时请三者配套使用，版本不匹配可能导致无法加载。</p>
+          <table class="ore-table version-table">
+            <thead>
+              <tr>
+                <th>Steve 模组</th>
+                <th>Minecraft</th>
+                <th>Forge</th>
+                <th>Java</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1.0.0</strong></td>
+                <td><strong>1.20.1</strong></td>
+                <td><strong>47.2.0</strong>（47.x 系列）</td>
+                <td><strong>17</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="feature-list version-notes">
+            <li><strong>Minecraft 范围</strong>：mods.toml 声明支持 <code>[1.20.1, 1.21)</code>，即仅 1.20.1，不含 1.21+</li>
+            <li><strong>Forge 范围</strong>：loader 要求 <code>[47,)</code>，对应 MC 1.20.1 的 Forge 47.x；项目编译依赖为 <code>1.20.1-47.2.0</code></li>
+            <li><strong>推荐组合</strong>：Steve 1.0.0 + Minecraft 1.20.1 + Forge 47.2.0 + Java 17</li>
+            <li><strong>不支持</strong>：Fabric、NeoForge、基岩版，以及 1.19 / 1.21 等其他 MC 大版本</li>
+          </ul>
+          <p class="tip">💡 启动器安装 Forge 时请选择 <strong>1.20.1</strong> 对应的 <strong>47.2.0</strong>（或同系列 47.x）。JAR 文件名通常为 <code>steve-ai-mod-1.0.0.jar</code>。</p>
+        </div>
+
+        <h3 class="craft-category">核心能力</h3>
+        <div class="card-grid cols-3">
+          <article class="card" data-keywords="Steve 挖矿 采集">
+            <div class="card-icon">⛏️</div>
+            <h3>智能采集</h3>
+            <p>说「挖一些铁」，代理会推理铁矿分布层级、寻路到合适深度、定位矿脉并开采，无需手写脚本。</p>
+          </article>
+          <article class="card" data-keywords="Steve 建造 建筑">
+            <div class="card-icon">🏗️</div>
+            <h3>自主建造</h3>
+            <p>根据可用材料生成结构方案，逐方块搭建房屋、平台、城堡等，支持程序化生成与 NBT 模板加载。</p>
+          </article>
+          <article class="card" data-keywords="Steve 多代理 协作">
+            <div class="card-icon">🤝</div>
+            <h3>多代理协作</h3>
+            <p>多个 Steve 可并行施工：自动划分区域、分配任务、避免冲突，例如三人同时建一座城堡。</p>
+          </article>
+        </div>
+
+        <h3 class="craft-category">安装与配置</h3>
+        <div class="ai-setup-grid">
+          <div class="card ai-requirements" data-keywords="Steve 安装 环境 Forge">
+            <h4>环境要求</h4>
+            <ul class="feature-list">
+              <li>Steve <strong>1.0.0</strong> + Minecraft <strong>1.20.1</strong> + Forge <strong>47.2.0</strong>（47.x）</li>
+              <li><strong>Java 17</strong>（与 Forge 1.20.1 启动器配置一致）</li>
+              <li>LLM API Key（OpenAI / Groq / Gemini 任选）</li>
+            </ul>
+          </div>
+          <div class="card ai-steps" data-keywords="Steve 配置 快速开始">
+            <h4>安装步骤</h4>
+            <ol class="step-list">
+              <li>从 <a href="https://github.com/YuvDwi/Steve/releases" target="_blank" rel="noopener">Releases</a> 下载 JAR，放入 <code>mods</code> 文件夹</li>
+              <li>启动游戏一次，生成配置目录</li>
+              <li>复制 <code>config/steve-common.toml.example</code> 为 <code>config/steve-common.toml</code></li>
+              <li>填入 API Key 与模型配置</li>
+              <li>进游戏执行 <code>/steve spawn Bob</code> 召唤代理</li>
+              <li>按 <kbd>K</kbd> 打开指令面板，输入自然语言命令</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="code-block-wrap" data-keywords="Steve 配置 openai groq gemini">
+          <p class="code-label">config/steve-common.toml 示例</p>
+          <pre class="code-block"><code>[llm]
+provider = "groq"  # openai | groq | gemini
+
+[openai]
+apiKey = "sk-..."
+model = "gpt-3.5-turbo"
+maxTokens = 1000
+temperature = 0.7
+
+[groq]
+apiKey = "gsk_..."
+model = "llama3-70b-8192"
+maxTokens = 1000
+
+[gemini]
+apiKey = "AI..."
+model = "gemini-1.5-flash"
+maxTokens = 1000</code></pre>
+          <p class="tip">💡 游戏内推荐用 <strong>Groq</strong>（响应快）；复杂规划可试 GPT-4。temperature 建议 0.5~0.7，行为更稳定。</p>
+        </div>
+
+        <h3 class="craft-category">指令与实践</h3>
+        <div class="guide-grid">
+          <article class="guide-card" data-keywords="Steve 命令 示例 自然语言">
+            <span class="guide-badge">基础指令</span>
+            <h3>自然语言示例</h3>
+            <div class="guide-body">
+              <pre class="code-block compact"><code>"mine 20 iron ore"
+"build a house near me"
+"follow me"
+"gather wood from that forest"
+"defend me from zombies"
+"make a cobblestone platform here"
+"attack that creeper"
+"help Alex with the tower"</code></pre>
+              <p>无需精确语法，代理会自行理解意图并拆解为移动、挖矿、放置、战斗等动作序列。</p>
+            </div>
+          </article>
+
+          <article class="guide-card" data-keywords="Steve 命令 spawn 召唤">
+            <span class="guide-badge">游戏命令</span>
+            <h3>常用 /steve 命令</h3>
+            <div class="guide-body">
+              <table class="ore-table">
+                <thead>
+                  <tr><th>命令</th><th>说明</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>/steve spawn &lt;名字&gt;</code></td><td>召唤一名 Steve 代理</td></tr>
+                  <tr><td><kbd>K</kbd></td><td>打开指令面板，输入任务</td></tr>
+                </tbody>
+              </table>
+              <p>每个 Steve 拥有独立记忆与任务上下文，可给不同代理分配不同工作。</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="craft-category">结合本攻略的实战场景</h3>
+        <div class="card-grid cols-2">
+          <article class="card ai-practice" data-keywords="Steve 实践 生存 第一天">
+            <h3>🌱 生存初期</h3>
+            <ul class="feature-list">
+              <li><code>"gather 20 oak logs"</code> — 替代手动砍树，快速完成第一天物资准备</li>
+              <li><code>"build a small shelter near me with a door"</code> — 日落前自动搭临时庇护所</li>
+              <li><code>"place torches around this area"</code> — 批量照明，防止怪物生成</li>
+            </ul>
+          </article>
+          <article class="card ai-practice" data-keywords="Steve 实践 挖矿 铁 钻石">
+            <h3>⛏️ 资源采集</h3>
+            <ul class="feature-list">
+              <li><code>"mine iron ore until you have 32"</code> — 配合上文「分支挖矿法」，专注探索与基地规划</li>
+              <li><code>"dig down to Y -54 and mine diamonds"</code> — 代理按层级寻找钻石（需铁镐以上工具，见合成指南）</li>
+              <li><code>"collect cobblestone and fill this chest"</code> — 自动化收集建材</li>
+            </ul>
+          </article>
+          <article class="card ai-practice" data-keywords="Steve 实践 建造 基地">
+            <h3>🏠 基地建造</h3>
+            <ul class="feature-list">
+              <li><code>"build a storage room with 10 chests"</code> — 快速搭建存储区</li>
+              <li><code>"build a 9x9 wheat farm"</code> — 配合农牧攻略，解放重复劳动</li>
+              <li>召唤 2~3 个 Steve：<code>"build a castle together"</code> — 体验多代理并行施工</li>
+            </ul>
+          </article>
+          <article class="card ai-practice" data-keywords="Steve 实践 战斗 下界 末地">
+            <h3>⚔️ 战斗与探索</h3>
+            <ul class="feature-list">
+              <li><code>"defend me from zombies tonight"</code> — 夜间守家，你专注合成与附魔</li>
+              <li><code>"follow me and attack hostile mobs"</code> — 下界/洞穴探索时的护卫</li>
+              <li><code>"light up this cave"</code> — 探索前让代理先行铺设火把</li>
+            </ul>
+          </article>
+        </div>
+
+        <h3 class="craft-category">工作原理（简述）</h3>
+        <div class="ai-flow card" data-keywords="Steve 架构 LLM 原理">
+          <div class="flow-steps">
+            <div class="flow-step"><span>1</span><p>按 <kbd>K</kbd> 输入自然语言</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span>2</span><p>TaskPlanner 调用 LLM 生成动作计划</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span>3</span><p>ActionExecutor 逐 tick 执行（挖矿/建造/移动/战斗）</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span>4</span><p>结果写入记忆，支持后续对话上下文</p></div>
+          </div>
+          <p class="flow-note">采用「直接动作执行」而非传统 ReAct 循环，减少 API 调用与延迟，保证游戏不卡顿。多代理协作由服务端 CollaborativeBuildManager 做空间分区与冲突避免。</p>
+        </div>
+
+        <h3 class="craft-category">注意事项</h3>
+        <div class="faq-list">
+          <details class="faq-item" data-keywords="Steve 限制 合成 crafting">
+            <summary>当前有哪些局限？</summary>
+            <p>代理<strong>尚不能合成工具</strong>（官方 README 标注为已知问题）；单任务同步执行，挖矿时无法并行其他操作；重启后记忆会重置。智能程度取决于所选 LLM，GPT-3.5 偶有不合理决策，GPT-4 规划更好但更慢。</p>
+          </details>
+          <details class="faq-item" data-keywords="Steve 源码 开发 Gradle">
+            <summary>如何从源码构建？</summary>
+            <p>克隆仓库后执行 <code>./gradlew build</code>，产物在 <code>build/libs/</code>。开发调试可用 <code>./gradlew runClient</code>。项目结构包含 <code>llm/</code>、<code>action/</code>、<code>structure/</code>、<code>memory/</code> 等模块，MIT 开源，欢迎提交 Issue 与 PR。</p>
+          </details>
+          <details class="faq-item" data-keywords="Steve API 费用 密钥">
+            <summary>API 费用如何控制？</summary>
+            <p>每次指令会调用 LLM，频繁下达复杂任务会产生 API 费用。建议先用 Groq 免费额度测试；简单任务用短句；多代理协作时注意同时发起的请求数量。勿将含 API Key 的配置文件上传到公开仓库。</p>
+          </details>
         </div>
       </div>
     </section>
