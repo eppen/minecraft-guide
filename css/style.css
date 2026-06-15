@@ -610,6 +610,18 @@ a:hover { text-decoration: underline; }
 }
 
 /* ===== Crafting Grid ===== */
+.craft-category {
+  font-size: 1.1rem;
+  color: var(--grass-light);
+  margin: 32px 0 16px;
+  padding-left: 12px;
+  border-left: 3px solid var(--grass);
+}
+
+.craft-category:first-of-type {
+  margin-top: 0;
+}
+
 .craft-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -650,6 +662,29 @@ a:hover { text-decoration: underline; }
 .craft-slot.wool { background: #eee; }
 .craft-slot.book { background: #8b4513; }
 .craft-slot.obsidian { background: #1a0a2e; }
+.craft-slot.coal { background: #2a2a2a; }
+.craft-slot.diamond { background: var(--diamond); }
+.craft-slot.gold { background: var(--gold); }
+.craft-slot.string { background: #e8e8e8; }
+.craft-slot.flint { background: #555; }
+.craft-slot.pearl { background: #0a6e5c; }
+.craft-slot.blaze { background: #ffcc00; }
+.craft-slot.netherite { background: #4a3f35; }
+
+.craft-preview.shapeless {
+  grid-template-columns: repeat(3, 32px);
+  align-items: center;
+}
+
+.craft-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 
 .craft-item h4 {
   margin-bottom: 4px;
