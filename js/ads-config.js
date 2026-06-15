@@ -6,7 +6,7 @@
  */
 window.ADS_CONFIG = {
   enabled: true,
-  client: 'ca-pub-XXXXXXXXXXXXXXXX',
+  client: 'ca-pub-1782800874172292',
   slots: {
     top: '',
     mid: '',
