@@ -670,6 +670,34 @@ a:hover { text-decoration: underline; }
 .craft-slot.pearl { background: #0a6e5c; }
 .craft-slot.blaze { background: #ffcc00; }
 .craft-slot.netherite { background: #4a3f35; }
+.craft-slot.paper { background: #f5f5dc; }
+.craft-slot.leather { background: #8b4513; }
+.craft-slot.feather { background: #fffacd; }
+.craft-slot.shulker { background: #9b6db8; }
+.craft-slot.redstone { background: #cc2222; }
+.craft-slot.sugar { background: #6b8e23; }
+.craft-slot.iron-ore { background: #b8734a; }
+.craft-slot.gold-ore { background: #a89030; }
+.craft-slot.sand { background: #dbd3a0; }
+.craft-slot.charcoal { background: #3a3a3a; }
+.craft-slot.bone { background: #f0f0e8; }
+.craft-slot.glass { background: #88bbdd; }
+.craft-slot.ancient-debris { background: #3d2f26; }
+.craft-slot.netherite-scrap { background: #6b5a4a; }
+
+.craft-preview.smelting {
+  grid-template-columns: 32px auto 32px;
+  align-items: center;
+}
+
+.craft-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 0 4px;
+}
 
 .craft-preview.shapeless {
   grid-template-columns: repeat(3, 32px);
