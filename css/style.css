@@ -684,6 +684,42 @@ a:hover { text-decoration: underline; }
 .craft-slot.glass { background: #88bbdd; }
 .craft-slot.ancient-debris { background: #3d2f26; }
 .craft-slot.netherite-scrap { background: #6b5a4a; }
+.craft-slot.water { background: #3366cc; }
+.craft-slot.lava { background: #ff6600; }
+.craft-slot.end-frame { background: #4a7a6a; }
+
+.craft-preview.portal {
+  gap: 2px;
+  justify-content: center;
+}
+
+.craft-preview.portal .craft-slot {
+  width: 24px;
+  height: 24px;
+}
+
+.craft-preview.portal-end .craft-slot {
+  width: 20px;
+  height: 20px;
+}
+
+.craft-preview.portal-nether {
+  grid-template-columns: repeat(4, 24px);
+}
+
+.craft-preview.portal-end {
+  grid-template-columns: repeat(5, 20px);
+}
+
+.craft-slot.portal-empty {
+  background: transparent;
+  border: 1px dashed rgba(255,255,255,0.08);
+}
+
+.craft-slot.portal-core {
+  background: linear-gradient(135deg, #6a0dad, #9932cc);
+  box-shadow: inset 0 0 6px rgba(200, 100, 255, 0.5);
+}
 
 .craft-preview.smelting {
   grid-template-columns: 32px auto 32px;
