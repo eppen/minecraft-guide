@@ -72,8 +72,43 @@
   var searchInput = document.getElementById('searchInput');
   var searchResults = document.getElementById('searchResults');
   var searchResultsList = document.getElementById('searchResultsList');
+  var searchResultCount = document.getElementById('searchResultCount');
   var closeSearchBtn = document.getElementById('closeSearch');
   var searchableElements = document.querySelectorAll('[data-keywords]');
+  var craftSearchInput = document.getElementById('craftSearchInput');
+  var craftSearchHint = document.getElementById('craftSearchHint');
+  var craftItems = document.querySelectorAll('#craft .craft-item');
+  var craftCategories = document.querySelectorAll('#craft .craft-category');
+
+  var SECTION_NAMES = {
+    about: '游戏介绍',
+    modes: '游戏模式',
+    start: '新手入门',
+    survival: '生存攻略',
+    craft: '合成指南',
+    build: '建造技巧',
+    advanced: '进阶内容',
+    ai: 'AI 助手',
+    faq: '常见问题'
+  };
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function tokenize(query) {
+    return (query || '').toLowerCase().split(/\s+/).filter(Boolean);
+  }
+
+  function getSectionLabel(el) {
+    var section = el.closest('section[id]');
+    if (!section) return '其他';
+    return SECTION_NAMES[section.id] || section.id;
+  }
 
   function buildSearchIndex() {
     var index = [];
@@ -84,7 +119,13 @@
       if (heading) title = heading.textContent.trim();
 
       var text = el.textContent.trim().substring(0, 120);
-      index.push({ el: el, keywords: keywords, title: title, text: text });
+      index.push({
+        el: el,
+        keywords: keywords,
+        title: title,
+        text: text,
+        section: getSectionLabel(el)
+      });
     });
     return index;
   }
@@ -92,13 +133,14 @@
   var searchIndex = buildSearchIndex();
 
   function performSearch(query) {
-    if (!query || query.length < 1) return [];
+    var tokens = tokenize(query);
+    if (!tokens.length) return [];
 
-    var q = query.toLowerCase();
     return searchIndex.filter(function (item) {
-      return item.keywords.toLowerCase().indexOf(q) !== -1 ||
-             item.title.toLowerCase().indexOf(q) !== -1 ||
-             item.text.toLowerCase().indexOf(q) !== -1;
+      var haystack = (item.keywords + ' ' + item.title + ' ' + item.text + ' ' + item.section).toLowerCase();
+      return tokens.every(function (token) {
+        return haystack.indexOf(token) !== -1;
+      });
     });
   }
 
@@ -111,17 +153,27 @@
     }, 2000);
   }
 
-  function showResults(results) {
+  function showResults(results, query) {
     if (!searchResults || !searchResultsList) return;
 
     searchResultsList.innerHTML = '';
 
+    if (searchResultCount) {
+      searchResultCount.textContent = results.length ? '（' + results.length + ' 条）' : '';
+    }
+
     if (results.length === 0) {
-      searchResultsList.innerHTML = '<li>未找到相关内容，请尝试其他关键词</li>';
+      var emptyLi = document.createElement('li');
+      emptyLi.className = 'no-result';
+      emptyLi.textContent = '未找到与「' + query + '」相关的内容，请换关键词试试';
+      searchResultsList.appendChild(emptyLi);
     } else {
       results.forEach(function (item) {
         var li = document.createElement('li');
-        li.innerHTML = '<strong>' + item.title + '</strong><br><small>' + item.text + '...</small>';
+        li.innerHTML =
+          '<span class="search-result-badge">' + escapeHtml(item.section) + '</span>' +
+          '<strong>' + escapeHtml(item.title || '相关内容') + '</strong>' +
+          '<small>' + escapeHtml(item.text) + '...</small>';
         li.addEventListener('click', function () {
           hideResults();
           scrollToElement(item.el);
@@ -137,11 +189,78 @@
     if (searchResults) searchResults.hidden = true;
   }
 
+  function runGlobalSearch() {
+    if (!searchInput) return;
+    var query = searchInput.value.trim();
+    if (!query) {
+      hideResults();
+      return;
+    }
+    showResults(performSearch(query), query);
+  }
+
+  var searchDebounceTimer;
+  function debouncedGlobalSearch() {
+    clearTimeout(searchDebounceTimer);
+    searchDebounceTimer = setTimeout(runGlobalSearch, 200);
+  }
+
   if (searchInput) {
+    searchInput.addEventListener('input', debouncedGlobalSearch);
     searchInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
-        var results = performSearch(searchInput.value.trim());
-        showResults(results);
+        e.preventDefault();
+        clearTimeout(searchDebounceTimer);
+        runGlobalSearch();
+      }
+    });
+  }
+
+  function filterCraftItems(query) {
+    var tokens = tokenize(query);
+    var visible = 0;
+
+    craftItems.forEach(function (item) {
+      var titleEl = item.querySelector('h4');
+      var title = titleEl ? titleEl.textContent.trim() : '';
+      var keywords = item.getAttribute('data-keywords') || '';
+      var text = item.textContent.trim();
+      var haystack = (keywords + ' ' + title + ' ' + text).toLowerCase();
+      var match = !tokens.length || tokens.every(function (token) {
+        return haystack.indexOf(token) !== -1;
+      });
+
+      item.classList.toggle('craft-hidden', !match);
+      if (match) visible += 1;
+    });
+
+    craftCategories.forEach(function (category) {
+      var grid = category.nextElementSibling;
+      if (!grid || !grid.classList.contains('craft-grid')) return;
+      var hasVisible = grid.querySelector('.craft-item:not(.craft-hidden)');
+      var hide = tokens.length > 0 && !hasVisible;
+      category.classList.toggle('craft-hidden', hide);
+      grid.classList.toggle('craft-hidden', hide);
+    });
+
+    if (craftSearchHint) {
+      craftSearchHint.hidden = !tokens.length || visible > 0;
+    }
+  }
+
+  var craftDebounceTimer;
+  if (craftSearchInput) {
+    craftSearchInput.addEventListener('input', function () {
+      clearTimeout(craftDebounceTimer);
+      craftDebounceTimer = setTimeout(function () {
+        filterCraftItems(craftSearchInput.value.trim());
+      }, 150);
+    });
+    craftSearchInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        clearTimeout(craftDebounceTimer);
+        filterCraftItems(craftSearchInput.value.trim());
       }
     });
   }
@@ -150,8 +269,13 @@
     tag.addEventListener('click', function () {
       var keyword = tag.getAttribute('data-search');
       if (searchInput) searchInput.value = keyword;
-      var results = performSearch(keyword);
-      showResults(results);
+      runGlobalSearch();
+      if (craftSearchInput && keyword) {
+        craftSearchInput.value = keyword;
+        filterCraftItems(keyword);
+        var craftSection = document.getElementById('craft');
+        if (craftSection) craftSection.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 

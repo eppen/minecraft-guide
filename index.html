@@ -88,15 +88,19 @@
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="search" id="searchInput" placeholder="搜索攻略关键词，如：钻石、附魔、下界..." autocomplete="off">
+        <input type="search" id="searchInput" placeholder="搜索攻略与配方，如：钻石剑、船、漏斗…" autocomplete="off">
       </div>
       <div class="search-tags">
         <button class="tag" data-search="第一天">第一天</button>
         <button class="tag" data-search="挖矿">挖矿</button>
         <button class="tag" data-search="附魔">附魔</button>
+        <button class="tag" data-search="合成">合成</button>
+        <button class="tag" data-search="钻石">钻石</button>
+        <button class="tag" data-search="盔甲">盔甲</button>
+        <button class="tag" data-search="TNT">TNT</button>
+        <button class="tag" data-search="红石">红石</button>
         <button class="tag" data-search="下界">下界</button>
         <button class="tag" data-search="末影龙">末影龙</button>
-        <button class="tag" data-search="红石">红石</button>
         <button class="tag" data-search="Steve AI">Steve</button>
       </div>
     </section>
@@ -325,6 +329,13 @@
           <h2>合成指南</h2>
           <p>按游戏阶段整理的核心配方与基础材料，覆盖生存到通关的关键合成</p>
         </div>
+        <div class="craft-search">
+          <svg class="craft-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="search" id="craftSearchInput" placeholder="筛选配方：钻石、金苹果、铁轨、TNT…" autocomplete="off">
+          <p class="craft-search-hint" id="craftSearchHint" hidden>无匹配配方，请换关键词试试</p>
+        </div>
 
         <h3 class="craft-category">基础材料</h3>
         <div class="craft-grid">
@@ -507,6 +518,66 @@
             </div>
             <h4>下界合金碎片</h4>
             <p>熔炉：1 远古残骸 + 燃料 → 1 下界合金碎片</p>
+          </div>
+          <div class="craft-item" data-keywords="铁块 铁锭 材料 铁砧">
+            <div class="craft-preview">
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+            </div>
+            <h4>铁块</h4>
+            <p>9 铁锭（3×3）→ 1 铁块</p>
+          </div>
+          <div class="craft-item" data-keywords="火药 苦力怕 材料 TNT">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled gunpowder"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>火药</h4>
+            <p>击杀苦力怕/恶魂掉落（非合成，TNT 原料）</p>
+          </div>
+          <div class="craft-item" data-keywords="红石粉 红石 挖矿 材料">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled redstone"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>红石粉</h4>
+            <p>挖掘红石矿掉落（需铁镐以上，非合成）</p>
+          </div>
+          <div class="craft-item" data-keywords="苹果 金苹果 材料 食物">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled apple"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>苹果</h4>
+            <p>破坏橡树树叶概率掉落（非合成，金苹果原料）</p>
           </div>
         </div>
 
@@ -711,6 +782,36 @@
             <h4>桶</h4>
             <p>3 铁锭 → 1 桶（可装水/熔岩）</p>
           </div>
+          <div class="craft-item" data-keywords="木船 船 水路 交通">
+            <div class="craft-preview">
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>木船</h4>
+            <p>6 同种木板（上两排）→ 1 木船（水面快速移动）</p>
+          </div>
+          <div class="craft-item" data-keywords="运输木船 箱船 船 存储">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>运输木船</h4>
+            <p>1 箱子 + 5 同种木板 → 1 运输木船（自带储物箱）</p>
+          </div>
           <div class="craft-item" data-keywords="纸 甘蔗 书 材料">
             <div class="craft-preview">
               <div class="craft-slot filled sugar"></div>
@@ -850,6 +951,81 @@
             <h4>铁靴子</h4>
             <p>4 铁锭</p>
           </div>
+          <div class="craft-item" data-keywords="钻石剑 武器 战斗 钻石">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>钻石剑</h4>
+            <p>2 钻石 + 1 木棍</p>
+          </div>
+          <div class="craft-item" data-keywords="钻石胸甲 盔甲 防御 钻石 装备">
+            <div class="craft-preview">
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+            </div>
+            <h4>钻石胸甲</h4>
+            <p>8 钻石</p>
+          </div>
+          <div class="craft-item" data-keywords="钻石头盔 盔甲 防御 钻石 装备">
+            <div class="craft-preview">
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>钻石头盔</h4>
+            <p>5 钻石</p>
+          </div>
+          <div class="craft-item" data-keywords="钻石护腿 盔甲 防御 钻石 装备">
+            <div class="craft-preview">
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+            </div>
+            <h4>钻石护腿</h4>
+            <p>7 钻石</p>
+          </div>
+          <div class="craft-item" data-keywords="钻石靴子 盔甲 防御 钻石 装备">
+            <div class="craft-preview">
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>钻石靴子</h4>
+            <p>4 钻石</p>
+          </div>
         </div>
 
         <h3 class="craft-category">进阶装备</h3>
@@ -928,6 +1104,21 @@
             </div>
             <h4>酿造台</h4>
             <p>1 烈焰棒 + 3 圆石</p>
+          </div>
+          <div class="craft-item" data-keywords="铁砧 修复 附魔 合并">
+            <div class="craft-preview">
+              <div class="craft-slot filled iron-block"></div>
+              <div class="craft-slot filled iron-block"></div>
+              <div class="craft-slot filled iron-block"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+            </div>
+            <h4>铁砧</h4>
+            <p>3 铁块 + 4 铁锭（修复/合并/命名装备）</p>
           </div>
         </div>
 
@@ -1062,6 +1253,21 @@
             <h4>潜影盒</h4>
             <p>1 箱子 + 2 潜影壳（末地城战利品，可携带的存储箱）</p>
           </div>
+          <div class="craft-item" data-keywords="TNT 炸药 下界 远古残骸">
+            <div class="craft-preview">
+              <div class="craft-slot filled gunpowder"></div>
+              <div class="craft-slot filled sand"></div>
+              <div class="craft-slot filled gunpowder"></div>
+              <div class="craft-slot filled sand"></div>
+              <div class="craft-slot filled gunpowder"></div>
+              <div class="craft-slot filled sand"></div>
+              <div class="craft-slot filled gunpowder"></div>
+              <div class="craft-slot filled sand"></div>
+              <div class="craft-slot filled gunpowder"></div>
+            </div>
+            <h4>TNT</h4>
+            <p>5 火药 + 4 沙子（下界炸远古残骸常用）</p>
+          </div>
         </div>
 
         <h3 class="craft-category">传送门</h3>
@@ -1165,6 +1371,168 @@
             </div>
             <h4>红石火把</h4>
             <p>1 红石粉 + 1 木棍（基础红石信号源）</p>
+          </div>
+          <div class="craft-item" data-keywords="红石中继器 红石 电路 延迟">
+            <div class="craft-preview">
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled redstone"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled redstone-torch"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled redstone-torch"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled stone"></div>
+            </div>
+            <h4>红石中继器</h4>
+            <p>3 石头 + 2 红石火把 + 1 红石粉（延长/延迟信号）</p>
+          </div>
+          <div class="craft-item" data-keywords="活塞 红石 自动化 推动">
+            <div class="craft-preview">
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled stone"></div>
+              <div class="craft-slot filled redstone"></div>
+              <div class="craft-slot filled stone"></div>
+            </div>
+            <h4>活塞</h4>
+            <p>3 木板 + 4 圆石 + 1 铁锭 + 1 红石粉</p>
+          </div>
+        </div>
+
+        <h3 class="craft-category">食物与酿造</h3>
+        <div class="craft-grid">
+          <div class="craft-item" data-keywords="面包 小麦 食物 饥饿">
+            <div class="craft-preview">
+              <div class="craft-slot filled wheat"></div>
+              <div class="craft-slot filled wheat"></div>
+              <div class="craft-slot filled wheat"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>面包</h4>
+            <p>3 小麦（横排）→ 1 面包</p>
+          </div>
+          <div class="craft-item" data-keywords="金苹果 食物 战斗 末影龙">
+            <div class="craft-preview">
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled apple"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+              <div class="craft-slot filled gold"></div>
+            </div>
+            <h4>金苹果</h4>
+            <p>8 金锭 + 1 苹果（打龙/危急时回血）</p>
+          </div>
+          <div class="craft-item" data-keywords="玻璃瓶 酿造 药水 玻璃">
+            <div class="craft-preview">
+              <div class="craft-slot filled glass"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled glass"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled glass"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>玻璃瓶</h4>
+            <p>3 玻璃 → 3 玻璃瓶（酿造必备）</p>
+          </div>
+        </div>
+
+        <h3 class="craft-category">交通运输</h3>
+        <div class="craft-grid">
+          <div class="craft-item" data-keywords="矿车 铁路 运输 铁">
+            <div class="craft-preview">
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>矿车</h4>
+            <p>5 铁锭（U 形）→ 1 矿车</p>
+          </div>
+          <div class="craft-item" data-keywords="铁轨 铁路 运输 矿车">
+            <div class="craft-preview">
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+            </div>
+            <h4>铁轨</h4>
+            <p>6 铁锭 + 1 木棍 → 16 铁轨</p>
+          </div>
+        </div>
+
+        <h3 class="craft-category">建设工具</h3>
+        <div class="craft-grid">
+          <div class="craft-item" data-keywords="梯子 攀爬 建设 木棍">
+            <div class="craft-preview">
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot filled stick"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled stick"></div>
+            </div>
+            <h4>梯子</h4>
+            <p>6 木棍（两列）→ 3 梯子</p>
+          </div>
+          <div class="craft-item" data-keywords="木门 橡木门 建设 木板">
+            <div class="craft-preview">
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot filled"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>木门</h4>
+            <p>6 木板（两列）→ 3 木门</p>
+          </div>
+          <div class="craft-item" data-keywords="剪刀 羊毛 叶子 工具">
+            <div class="craft-preview">
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+              <div class="craft-slot"></div>
+            </div>
+            <h4>剪刀</h4>
+            <p>2 铁锭（斜排）→ 1 剪刀（剪羊毛/叶子）</p>
           </div>
         </div>
       </div>
@@ -1528,7 +1896,7 @@ maxTokens = 1000</code></pre>
 
   <div class="search-results" id="searchResults" hidden>
     <div class="search-results-inner container">
-      <h3>搜索结果</h3>
+      <h3>搜索结果 <span class="search-result-count" id="searchResultCount"></span></h3>
       <ul id="searchResultsList"></ul>
       <button class="btn btn-outline" id="closeSearch">关闭</button>
     </div>
@@ -1536,6 +1904,6 @@ maxTokens = 1000</code></pre>
 
   <script src="js/ads-config.js?v=3"></script>
   <script src="js/ads.js?v=1"></script>
-  <script src="js/app.js?v=5"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>

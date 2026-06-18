@@ -413,6 +413,52 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
+.craft-search {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto 28px;
+}
+
+.craft-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+#craftSearchInput {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#craftSearchInput:focus {
+  border-color: var(--grass);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.craft-search-hint {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.craft-hidden {
+  display: none !important;
+}
+
 .search-tags {
   display: flex;
   flex-wrap: wrap;
@@ -784,6 +830,11 @@ a:hover { text-decoration: underline; }
 .craft-slot.water { background: #3366cc; }
 .craft-slot.lava { background: #ff6600; }
 .craft-slot.end-frame { background: #4a7a6a; }
+.craft-slot.gunpowder { background: #5a5a5a; }
+.craft-slot.apple { background: #cc3333; }
+.craft-slot.iron-block { background: #d0d0d0; }
+.craft-slot.wheat { background: #c4a035; }
+.craft-slot.redstone-torch { background: #cc4444; }
 
 .craft-preview.portal {
   gap: 2px;
@@ -1029,26 +1080,61 @@ a:hover { text-decoration: underline; }
   margin-bottom: 16px;
 }
 
+.search-result-count {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 #searchResultsList {
   list-style: none;
   margin-bottom: 20px;
 }
 
 #searchResultsList li {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  color: var(--text-muted);
-  transition: background 0.2s;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+#searchResultsList li:last-child {
+  border-bottom: none;
 }
 
 #searchResultsList li:hover {
-  background: rgba(124, 189, 58, 0.1);
-  color: var(--text);
+  background: var(--hover-bg);
 }
 
-#searchResultsList li strong {
+#searchResultsList li.no-result {
+  cursor: default;
+  color: var(--text-muted);
+}
+
+#searchResultsList li.no-result:hover {
+  background: transparent;
+}
+
+.search-result-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--grass-light);
+  background: var(--accent-glow);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+#searchResultsList strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+#searchResultsList small {
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 .search-highlight {
