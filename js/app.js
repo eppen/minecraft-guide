@@ -11,18 +11,17 @@
 
   function updateThemeToggleLabel() {
     if (!themeToggle) return;
-    themeToggle.setAttribute(
-      'aria-label',
-      getTheme() === 'dark' ? '切换亮色模式' : '切换暗色模式'
-    );
+    if (getTheme() === 'light') {
+      themeToggle.setAttribute('aria-label', '切换暗色主题');
+      themeToggle.title = '切换暗色主题';
+    } else {
+      themeToggle.setAttribute('aria-label', '切换亮色主题');
+      themeToggle.title = '切换亮色主题';
+    }
   }
 
   function applyTheme(theme) {
-    if (theme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
     try {
       localStorage.setItem(THEME_KEY, theme);
     } catch (e) {}

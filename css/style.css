@@ -26,6 +26,7 @@
   --header-bg: rgba(15, 20, 25, 0.85);
   --pixel-grid: rgba(255, 255, 255, 0.015);
   --hover-bg: rgba(255, 255, 255, 0.06);
+  --bg-elevated: #243040;
   --surface-muted: rgba(255, 255, 255, 0.04);
   --overlay-bg: rgba(0, 0, 0, 0.7);
   --code-bg: #0a0e14;
@@ -49,6 +50,7 @@
   --header-bg: rgba(255, 255, 255, 0.88);
   --pixel-grid: rgba(0, 0, 0, 0.04);
   --hover-bg: rgba(0, 0, 0, 0.05);
+  --bg-elevated: #f0f4f8;
   --surface-muted: rgba(0, 0, 0, 0.04);
   --overlay-bg: rgba(15, 20, 25, 0.45);
   --code-bg: #f4f6f9;
@@ -147,6 +149,15 @@ a:hover { text-decoration: underline; }
   display: flex;
   list-style: none;
   gap: 8px;
+  margin: 0 8px 0 auto;
+  padding: 0;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .nav-links a {
@@ -158,8 +169,6 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
 }
 
-.nav-spacer { flex: 1; }
-
 .nav-links a:hover {
   color: var(--text);
   background: var(--hover-bg);
@@ -167,25 +176,44 @@ a:hover { text-decoration: underline; }
 }
 
 .theme-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--hover-bg);
+  border-radius: var(--radius);
   cursor: pointer;
-  color: var(--text);
-  font-size: 1rem;
-  line-height: 1;
-  transition: background 0.2s, border-color 0.2s;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 
 .theme-toggle:hover {
-  border-color: var(--grass-light);
-  background: var(--accent-glow);
+  color: var(--text);
+  background: var(--bg-elevated);
+  border-color: var(--text-muted);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun,
+:root:not([data-theme="light"]) .theme-toggle .icon-sun {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 .theme-toggle-floating {
@@ -195,17 +223,18 @@ a:hover { text-decoration: underline; }
   z-index: 100;
 }
 
-html:not([data-theme="light"]) .theme-icon-moon { display: none; }
-html[data-theme="light"] .theme-icon-sun { display: none; }
-
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  background: none;
-  border: none;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   cursor: pointer;
-  padding: 4px;
 }
 
 .nav-toggle span {
@@ -1284,6 +1313,8 @@ kbd {
 
 @media (max-width: 640px) {
   .nav-toggle { display: flex; }
+
+  .theme-toggle { margin-left: 0; }
 
   .nav-links {
     position: fixed;
