@@ -1,6 +1,41 @@
 (function () {
   'use strict';
 
+  // ===== Theme Toggle =====
+  var THEME_KEY = 'mcguide-theme';
+  var themeToggle = document.getElementById('themeToggle');
+
+  function getTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+
+  function updateThemeToggleLabel() {
+    if (!themeToggle) return;
+    themeToggle.setAttribute(
+      'aria-label',
+      getTheme() === 'dark' ? '切换亮色模式' : '切换暗色模式'
+    );
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (e) {}
+    updateThemeToggleLabel();
+  }
+
+  if (themeToggle) {
+    updateThemeToggleLabel();
+    themeToggle.addEventListener('click', function () {
+      applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+    });
+  }
+
   // ===== Mobile Navigation =====
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');

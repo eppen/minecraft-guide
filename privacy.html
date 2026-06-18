@@ -6,8 +6,22 @@
   <meta name="google-adsense-account" content="ca-pub-2045994937692573">
   <title>隐私政策 · 我的世界攻略</title>
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('mcguide-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
+  <button type="button" class="theme-toggle theme-toggle-floating" id="themeToggle" aria-label="切换亮色模式">
+    <span class="theme-icon theme-icon-sun" aria-hidden="true">☀️</span>
+    <span class="theme-icon theme-icon-moon" aria-hidden="true">🌙</span>
+  </button>
   <div class="pixel-bg"></div>
   <main class="section">
     <div class="container" style="max-width: 720px;">
@@ -41,5 +55,6 @@
       <a href="index.html" class="btn btn-outline">← 返回首页</a>
     </div>
   </main>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>

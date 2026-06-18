@@ -10,6 +10,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('mcguide-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div class="pixel-bg"></div>
@@ -20,6 +30,11 @@
         <span class="logo-block"></span>
         <span>我的世界攻略</span>
       </a>
+      <span class="nav-spacer"></span>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换亮色模式">
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">☀️</span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">🌙</span>
+      </button>
       <button class="nav-toggle" id="navToggle" aria-label="打开菜单">
         <span></span><span></span><span></span>
       </button>
@@ -1520,6 +1535,6 @@ maxTokens = 1000</code></pre>
 
   <script src="js/ads-config.js?v=3"></script>
   <script src="js/ads.js?v=1"></script>
-  <script src="js/app.js?v=3"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>
