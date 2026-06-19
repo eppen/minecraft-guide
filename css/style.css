@@ -835,6 +835,9 @@ a:hover { text-decoration: underline; }
 .craft-slot.iron-block { background: #d0d0d0; }
 .craft-slot.wheat { background: #c4a035; }
 .craft-slot.redstone-torch { background: #cc4444; }
+.craft-slot.nether-star { background: #e8f0ff; box-shadow: 0 0 6px rgba(200, 220, 255, 0.6); }
+.craft-slot.nautilus { background: #f0dbb8; }
+.craft-slot.heart-ocean { background: #1a6380; }
 
 .craft-preview.portal {
   gap: 2px;
@@ -946,6 +949,8 @@ a:hover { text-decoration: underline; }
 .advanced-card.nether { border-top-color: #c74400; }
 .advanced-card.end { border-top-color: #b077bc; }
 .advanced-card.redstone { border-top-color: #cc0000; }
+.advanced-card.structures { border-top-color: #4a9e6a; }
+.advanced-card.beacon { border-top-color: #f0d060; }
 
 .advanced-header {
   display: flex;
