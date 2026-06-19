@@ -259,8 +259,8 @@
                   <tr><th>矿物</th><th>推荐层级 (Y)</th><th>工具</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>煤矿</td><td>0 ~ 320</td><td>木镐+</td></tr>
-                  <tr><td>铁矿</td><td>-16 ~ 72</td><td>石镐+</td></tr>
+                  <tr><td>煤矿</td><td>0 ~ 256</td><td>木镐+</td></tr>
+                  <tr><td>铁矿</td><td>-64 ~ 72（低处）/ 112 ~ 256（高处）</td><td>石镐+</td></tr>
                   <tr><td>金矿</td><td>-64 ~ 32</td><td>铁镐+</td></tr>
                   <tr><td>钻石</td><td>-64 ~ -4</td><td>铁镐+</td></tr>
                   <tr><td>远古残骸</td><td>8 ~ 22 (下界)</td><td>钻石镐+</td></tr>
@@ -279,7 +279,7 @@
                 <li><strong>骷髅</strong>：远程攻击，之字形靠近或使用盾牌。白天可在阴影下攻击。</li>
                 <li><strong>苦力怕</strong>：靠近会嘶嘶作响并爆炸。听到声音后立即后退 4 格以上，或用水流阻挡。</li>
                 <li><strong>末影人</strong>：不要直视眼睛。戴南瓜头可安全观察，或站在 2 格高空间下单挑。</li>
-                <li><strong>凋灵</strong>：后期 Boss，需准备下界之星、药水与大量金苹果。</li>
+                <li><strong>凋灵</strong>：后期 Boss，需准备药水与大量金苹果，击败后掉落下界之星。</li>
               </ul>
             </div>
           </article>
@@ -842,12 +842,12 @@
           </div>
           <div class="craft-item" data-keywords="盾牌 防御 战斗">
             <div class="craft-preview">
-              <div class="craft-slot filled iron"></div>
               <div class="craft-slot filled wood"></div>
               <div class="craft-slot filled iron"></div>
-              <div class="craft-slot filled iron"></div>
               <div class="craft-slot filled wood"></div>
-              <div class="craft-slot filled iron"></div>
+              <div class="craft-slot filled wood"></div>
+              <div class="craft-slot filled wood"></div>
+              <div class="craft-slot filled wood"></div>
               <div class="craft-slot"></div>
               <div class="craft-slot filled wood"></div>
               <div class="craft-slot"></div>
@@ -1059,9 +1059,9 @@
               <div class="craft-slot"></div>
               <div class="craft-slot filled book"></div>
               <div class="craft-slot"></div>
+              <div class="craft-slot filled diamond"></div>
               <div class="craft-slot filled obsidian"></div>
-              <div class="craft-slot filled obsidian"></div>
-              <div class="craft-slot filled obsidian"></div>
+              <div class="craft-slot filled diamond"></div>
               <div class="craft-slot filled obsidian"></div>
               <div class="craft-slot filled obsidian"></div>
               <div class="craft-slot filled obsidian"></div>
@@ -1146,7 +1146,7 @@
               <div class="craft-slot filled netherite"></div>
             </div>
             <h4>下界合金锭</h4>
-            <p>4 金锭 + 1 下界合金碎片（无序合成）</p>
+            <p>4 金锭 + 4 下界合金碎片（无序合成）</p>
           </div>
           <div class="craft-item" data-keywords="锻造台 下界合金 升级 装备">
             <div class="craft-preview">
@@ -1344,9 +1344,9 @@
               <div class="craft-slot"></div>
               <div class="craft-slot filled"></div>
               <div class="craft-slot"></div>
-              <div class="craft-slot filled iron"></div>
               <div class="craft-slot"></div>
               <div class="craft-slot filled iron"></div>
+              <div class="craft-slot"></div>
             </div>
             <h4>漏斗</h4>
             <p>5 铁锭 + 1 箱子（物品收集与传输）</p>
@@ -1585,7 +1585,7 @@
               <li>穿戴<strong>金盔甲</strong>防止猪灵攻击（不要挖他们的金块）</li>
               <li>寻找<strong>下界要塞</strong>获取烈焰棒，用于酿造与末地之眼</li>
               <li>在 Y=8~22 用 TNT 或床爆破法寻找<strong>远古残骸</strong></li>
-              <li>4 金锭 + 1 远古残骸 → 下界合金锭，升级钻石装备</li>
+              <li>远古残骸熔炼为下界合金碎片，4 金锭 + 4 下界合金碎片 → 下界合金锭，用于升级钻石装备</li>
             </ol>
           </article>
 
