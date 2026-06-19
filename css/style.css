@@ -753,28 +753,42 @@ a:hover { text-decoration: underline; }
 }
 
 /* ===== Crafting Grid ===== */
-.craft-nav {
+.craft-layout {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 24px;
-  padding: 12px 16px;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.craft-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.craft-nav {
+  flex: 0 0 160px;
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
   background: var(--surface-muted);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .craft-nav-link {
-  display: inline-block;
-  padding: 6px 14px;
+  display: block;
+  padding: 6px 10px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 6px;
   color: var(--text-muted);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-decoration: none;
   transition: all 0.15s;
-  white-space: nowrap;
 }
 
 .craft-nav-link:hover {
@@ -1440,6 +1454,16 @@ kbd {
   .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr; }
   .guide-grid { grid-template-columns: 1fr; }
   .craft-grid { grid-template-columns: repeat(2, 1fr); }
+  .craft-layout { flex-direction: column; }
+  .craft-nav {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
   .advanced-grid { grid-template-columns: 1fr; }
   .ai-setup-grid { grid-template-columns: 1fr; }
   .flow-steps { flex-direction: column; }
