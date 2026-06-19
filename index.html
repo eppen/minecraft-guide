@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="我的世界（Minecraft）完整玩法介绍与攻略指南，涵盖生存、建造、红石、下界与末地，以及 Steve AI 模组使用实践。">
+  <meta name="description" content="我的世界（Minecraft）完整玩法介绍与攻略指南，涵盖生存、建造、红石、下界与末地、Steve AI 模组，以及 Java 编程与 Forge 模组开发入门。">
   <meta name="google-adsense-account" content="ca-pub-2045994937692573">
   <title>我的世界 · 玩法与攻略指南</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +39,7 @@
         <li><a href="#build">建造技巧</a></li>
         <li><a href="#advanced">进阶内容</a></li>
         <li><a href="#ai">AI 助手</a></li>
+        <li><a href="#java">Java 开发</a></li>
       </ul>
       <div class="nav-actions">
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换亮色主题" title="切换亮色主题">
@@ -103,6 +104,7 @@
         <button class="tag" data-search="末影龙">末影龙</button>
         <button class="tag" data-search="Steve AI">Steve</button>
         <button class="tag" data-search="Steve 安装">Steve 安装</button>
+        <button class="tag" data-search="Java Forge">Java 开发</button>
       </div>
     </section>
 
@@ -2172,6 +2174,262 @@ maxTokens = 1000</code></pre>
           <details class="faq-item" data-keywords="Steve 安装 配置 不工作 API Key">
             <summary>代理召唤成功但不执行任务？</summary>
             <p>多为 <strong>API 配置问题</strong>：确认 <code>steve-common.toml</code> 已从 example 复制、<code>provider</code> 与填 Key 的段落一致、Key 有效且有余额。修改配置后需<strong>重启整个游戏</strong>。网络需能访问对应 API（Groq/OpenAI/Google）；国内用户若 OpenAI 不可用，可改用 Groq 或 Gemini。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Java Module -->
+    <section class="section" id="java">
+      <div class="container">
+        <div class="section-header">
+          <h2>Java 编程 · 模组开发</h2>
+          <p>Java 版模组、插件与工具均用 Java 编写——从语法入门到 Forge 第一个 Mod</p>
+        </div>
+
+        <div class="java-banner card" data-keywords="Java 编程 模组开发 Forge 入门">
+          <div class="java-banner-content">
+            <span class="java-badge">开发指南</span>
+            <h3>用 Java 扩展 Minecraft</h3>
+            <p>
+              Minecraft Java 版的核心与<strong>模组（Mod）</strong>生态都基于 Java。
+              想自制物品、生物、维度，或像本站介绍的 <a href="#ai">Steve AI</a> 那样接入 LLM，
+              都需要掌握 Java 与 Forge（或 Fabric）开发流程。本模块提供<strong>零基础语法</strong>与<strong>Forge 1.20.1 实战路径</strong>，与上文 Steve 安装教程中的 Java 17 环境一致。
+            </p>
+            <div class="java-links">
+              <a href="https://docs.minecraftforge.net/" target="_blank" rel="noopener" class="btn btn-primary">Forge 官方文档</a>
+              <a href="https://adoptium.net/" target="_blank" rel="noopener" class="btn btn-outline">下载 JDK</a>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="craft-category">学 Java 能做什么</h3>
+        <div class="card-grid cols-3">
+          <article class="card" data-keywords="Java Mod 模组 物品 方块">
+            <div class="card-icon">🧩</div>
+            <h3>Forge / Fabric 模组</h3>
+            <p>添加新物品、方块、生物、维度与游戏机制。社区绝大多数 Java 版 Mod 均由此实现。</p>
+          </article>
+          <article class="card" data-keywords="Java 插件 Bukkit Spigot Paper 服务器">
+            <div class="card-icon">🖥️</div>
+            <h3>服务器插件</h3>
+            <p>Bukkit / Spigot / Paper 插件用 Java 编写，适合小游戏、经济、权限等<strong>不改客户端</strong>的服务端玩法。</p>
+          </article>
+          <article class="card" data-keywords="Java 工具 数据包 命令 脚本">
+            <div class="card-icon">🔧</div>
+            <h3>工具与自动化</h3>
+            <p>地图生成器、存档分析、资源包批处理等周边工具；复杂逻辑也可配合数据包，但 Mod 级能力仍需 Java。</p>
+          </article>
+        </div>
+
+        <h3 class="craft-category" id="java-setup">开发环境搭建</h3>
+        <div class="ai-setup-grid">
+          <div class="card ai-requirements" data-keywords="Java 环境 JDK IDE Gradle IntelliJ">
+            <h4>推荐工具链</h4>
+            <ul class="feature-list">
+              <li><strong>JDK 17</strong>：开发 MC 1.20.1 Mod 的标准版本（与 Steve 模组一致）</li>
+              <li><strong>IntelliJ IDEA</strong>：Community 版免费，Forge 社区最常用 IDE</li>
+              <li><strong>Gradle</strong>：构建工具，Forge MDK 已内置 Wrapper，无需单独安装</li>
+              <li><strong>Git</strong>：版本管理（可选但强烈推荐）</li>
+            </ul>
+          </div>
+          <div class="card ai-steps" data-keywords="Java 安装 配置 验证 JDK">
+            <h4>环境检查清单</h4>
+            <ol class="step-list">
+              <li>安装 <a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener">Temurin JDK 17</a></li>
+              <li>终端执行 <code>java -version</code> 与 <code>javac -version</code>，均应显示 17</li>
+              <li>安装 <a href="https://www.jetbrains.com/idea/download/" target="_blank" rel="noopener">IntelliJ IDEA</a>（Community 即可）</li>
+              <li>设置 <code>JAVA_HOME</code> 指向 JDK 17 安装目录（Windows 可在系统环境变量中配置）</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card ai-install-guide java-mdk-guide" data-keywords="Forge MDK 模组 项目 创建 Gradle runClient">
+          <h4>创建第一个 Forge 模组项目</h4>
+          <p class="install-intro">以下以 <strong>Minecraft 1.20.1 + Forge 47.2.0</strong> 为例，与本站 Steve AI 模组版本线一致。完整文档见 <a href="https://docs.minecraftforge.net/en/1.20.1/gettingstarted/" target="_blank" rel="noopener">Forge 1.20.1 Getting Started</a>。</p>
+
+          <div class="install-step">
+            <h5><span class="install-step-num java-step-num">1</span> 下载 Forge MDK</h5>
+            <ul class="feature-list">
+              <li>打开 <a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html" target="_blank" rel="noopener">Forge 1.20.1 下载页</a>，选择 <strong>47.2.0</strong> → <strong>Mdk</strong></li>
+              <li>解压到不含中文与空格的目录，例如 <code>D:\Dev\MyFirstMod</code></li>
+              <li>删除 MDK 自带的 <code>.git</code> 文件夹（若有），再执行 <code>git init</code> 建立自己的仓库</li>
+            </ul>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num java-step-num">2</span> 修改模组标识</h5>
+            <p>编辑 <code>gradle.properties</code>，将 <code>mod_id</code>、<code>mod_name</code> 等改为你自己的模组名（小写英文，如 <code>myfirstmod</code>）。同步修改 <code>src/main/resources/META-INF/mods.toml</code> 中的 <code>modId</code> 与描述。</p>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num java-step-num">3</span> 生成 IDE 配置并导入</h5>
+            <ol class="step-list">
+              <li>Windows：在项目根目录打开终端，执行 <code>gradlew.bat genIntellijRuns</code></li>
+              <li>macOS / Linux：<code>./gradlew genIntellijRuns</code></li>
+              <li>用 IntelliJ 打开项目文件夹，选择 <strong>Import Gradle Project</strong></li>
+              <li>等待 Gradle 同步完成（首次会下载 MC 与 Forge 依赖，耗时较长）</li>
+            </ol>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num java-step-num">4</span> 运行测试客户端</h5>
+            <ol class="step-list">
+              <li>在 IntelliJ 右上角运行配置中选择 <strong>runClient</strong></li>
+              <li>点击运行，首次启动会再次下载资源，成功后进入带 Mod 的 Minecraft 主菜单</li>
+              <li>主菜单 → Mods 中应能看到你的模组名称</li>
+              <li>调试时用 <strong>runServer</strong> 可启动本地专用服务器</li>
+            </ol>
+            <p class="tip">💡 若 Gradle 同步失败，检查网络与 JDK 版本；国内用户可在 <code>gradle.properties</code> 配置镜像，或使用 VPN 完成首次依赖下载。</p>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num java-step-num">5</span> 打包发布</h5>
+            <ul class="feature-list">
+              <li>执行 <code>gradlew build</code>，产物位于 <code>build/libs/你的模组名-版本.jar</code></li>
+              <li>将 JAR 放入游戏 <code>mods</code> 文件夹即可加载（需对应 Forge 版本）</li>
+              <li>发布到 <a href="https://modrinth.com/" target="_blank" rel="noopener">Modrinth</a> 或 <a href="https://www.curseforge.com/minecraft/mc-mods" target="_blank" rel="noopener">CurseForge</a> 需遵守各平台规则与开源协议</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="craft-category" id="java-basics">Java 基础语法（MC 向）</h3>
+        <div class="guide-grid">
+          <article class="guide-card" data-keywords="Java 变量 类型 字符串 整数">
+            <span class="guide-badge">入门</span>
+            <h3>变量与类型</h3>
+            <div class="guide-body">
+              <pre class="code-block compact"><code>String playerName = "Alex";
+int diamondCount = 12;
+boolean isCreative = false;
+double health = 19.5;
+
+System.out.println(playerName + " 有 " + diamondCount + " 颗钻石");</code></pre>
+              <p>常用类型：<code>int</code> 整数、<code>double</code> 小数、<code>boolean</code> 布尔、<code>String</code> 文本。Mod 里方块 ID、数量、坐标大量使用 <code>int</code>。</p>
+            </div>
+          </article>
+
+          <article class="guide-card" data-keywords="Java 方法 函数 类 OOP">
+            <span class="guide-badge">结构</span>
+            <h3>类与方法</h3>
+            <div class="guide-body">
+              <pre class="code-block compact"><code>public class PickaxeHelper {
+    public static int maxDurability(String tier) {
+        if ("diamond".equals(tier)) {
+            return 1561;
+        }
+        return 59; // 木镐
+    }
+}</code></pre>
+              <p>Java 是面向对象语言：逻辑写在<strong>类（class）</strong>里，行为用<strong>方法（method）</strong>表示。Forge 模组的主类通常带 <code>@Mod</code> 注解。</p>
+            </div>
+          </article>
+
+          <article class="guide-card" data-keywords="Java 列表 循环 for 数组">
+            <span class="guide-badge">集合</span>
+            <h3>循环与列表</h3>
+            <div class="guide-body">
+              <pre class="code-block compact"><code>List&lt;String&gt; ores = List.of("iron", "gold", "diamond");
+for (String ore : ores) {
+    System.out.println("正在挖掘: " + ore);
+}</code></pre>
+              <p>Mod 开发中常遍历注册表、配方、实体列表。熟悉 <code>for</code> 循环与 <code>List</code> 是阅读 Forge 源码的基础。</p>
+            </div>
+          </article>
+
+          <article class="guide-card" data-keywords="Java 注解 事件 注册 DeferredRegister">
+            <span class="guide-badge">Mod 概念</span>
+            <h3>注解与注册</h3>
+            <div class="guide-body">
+              <pre class="code-block compact"><code>@Mod("examplemod")
+public class ExampleMod {
+    public ExampleMod() {
+        var bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModItems.ITEMS.register(bus);
+    }
+}</code></pre>
+              <p>Forge 用<strong>注解</strong>标记入口与事件；物品、方块通过 <code>DeferredRegister</code> 延迟注册。先理解「主类 + 注册」模式，再深入事件总线。</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="craft-category" id="java-first-mod">示例：注册自定义物品</h3>
+        <p class="version-intro">在 MDK 默认结构基础上，增加一个「魔法锭」物品（简化示例，便于理解注册流程）。</p>
+
+        <div class="code-block-wrap" data-keywords="Java 物品 Item 注册 示例代码">
+          <p class="code-label">ModItems.java — 注册物品</p>
+          <pre class="code-block"><code>public class ModItems {
+    public static final DeferredRegister&lt;Item&gt; ITEMS =
+        DeferredRegister.create(ForgeRegistries.ITEMS, ExampleMod.MOD_ID);
+
+    public static final RegistryObject&lt;Item&gt; MAGIC_INGOT = ITEMS.register("magic_ingot",
+        () -&gt; new Item(new Item.Properties()));
+}</code></pre>
+        </div>
+
+        <div class="code-block-wrap" data-keywords="Java 语言文件 翻译 en_us.json">
+          <p class="code-label">assets/examplemod/lang/en_us.json — 显示名称</p>
+          <pre class="code-block compact"><code>{
+  "item.examplemod.magic_ingot": "Magic Ingot"
+}</code></pre>
+          <p class="tip">💡 中文可新增 <code>zh_cn.json</code>，键名相同，值为「魔法锭」。物品纹理 PNG 放在 <code>assets/examplemod/textures/item/magic_ingot.png</code>（16×16）。</p>
+        </div>
+
+        <h3 class="craft-category">项目结构速查</h3>
+        <div class="card java-structure-card" data-keywords="Java 目录 结构 src main resources">
+          <table class="ore-table version-table">
+            <thead>
+              <tr><th>路径</th><th>作用</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>src/main/java/...</code></td><td>模组 Java 源码（物品、方块、事件逻辑）</td></tr>
+              <tr><td><code>src/main/resources/META-INF/mods.toml</code></td><td>模组元数据（ID、版本、依赖）</td></tr>
+              <tr><td><code>src/main/resources/assets/&lt;modid&gt;/</code></td><td>纹理、模型、语言文件</td></tr>
+              <tr><td><code>src/main/resources/data/&lt;modid&gt;/</code></td><td>配方、战利品表等数据驱动内容</td></tr>
+              <tr><td><code>build.gradle</code></td><td>依赖与构建配置</td></tr>
+              <tr><td><code>gradle.properties</code></td><td>模组 ID、版本号、MC 版本</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="craft-category">学习路线建议</h3>
+        <div class="java-flow card" data-keywords="Java 学习 路线 进阶 文档">
+          <div class="flow-steps">
+            <div class="flow-step java-flow-step"><span>1</span><p>Java 基础语法<br>（变量、类、循环）</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step java-flow-step"><span>2</span><p>跑通 MDK<br><code>runClient</code></p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step java-flow-step"><span>3</span><p>注册物品/方块<br>+ 纹理</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step java-flow-step"><span>4</span><p>事件系统<br>（右键、合成）</p></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step java-flow-step"><span>5</span><p>阅读开源 Mod<br>（如 Steve 源码）</p></div>
+          </div>
+          <ul class="feature-list version-notes">
+            <li><strong>官方</strong>：<a href="https://docs.oracle.com/javase/tutorial/" target="_blank" rel="noopener">Oracle Java 教程</a>、<a href="https://docs.minecraftforge.net/" target="_blank" rel="noopener">Forge 文档</a></li>
+            <li><strong>视频</strong>：B 站搜索「Minecraft 1.20 Forge 模组教程」跟随完整系列</li>
+            <li><strong>练手</strong>：为本站合成指南中的物品做「加强版」Mod 变体，或给 Steve 写小型扩展插件</li>
+            <li><strong>注意</strong>：Mod 开发需遵守 Mojang EULA，勿分发盗版客户端或未授权资产</li>
+          </ul>
+        </div>
+
+        <h3 class="craft-category">开发常见问题</h3>
+        <div class="faq-list">
+          <details class="faq-item" data-keywords="Java Forge Fabric 区别 选型">
+            <summary>Forge 和 Fabric 该选哪个？</summary>
+            <p><strong>Forge</strong> 历史久、大型 Mod 多（科技、魔法类整合包常见），API 较重，本指南与 Steve AI 均以 Forge 为例。<strong>Fabric</strong> 轻量、更新快，适合 1.21+ 新内容与性能向小型 Mod。两者<strong>不兼容</strong>，选一个生态坚持即可；语法都是 Java，切换时主要是 API 与注册方式不同。</p>
+          </details>
+          <details class="faq-item" data-keywords="Java 插件 Mod 区别 Bukkit">
+            <summary>模组（Mod）和插件（Plugin）有什么区别？</summary>
+            <p><strong>Mod</strong> 修改客户端与服务器游戏内容，玩家需安装 Forge/Fabric。<strong>Plugin</strong> 仅运行在 Spigot/Paper 等服务端，玩家用原版客户端即可加入。做新方块/生物用 Mod；做大厅、经济、小游戏用 Plugin。两者都使用 Java，但 API 完全不同。</p>
+          </details>
+          <details class="faq-item" data-keywords="Java Gradle 失败 下载 慢">
+            <summary>Gradle 同步或 runClient 一直失败？</summary>
+            <p>常见原因：JDK 不是 17、路径含中文、网络无法访问 Maven 中央仓库。确认 <code>java -version</code>，尝试命令行手动执行 <code>gradlew runClient</code> 查看完整报错。首次构建需下载大量依赖，失败时可删除 <code>.gradle</code> 缓存后重试。</p>
+          </details>
+          <details class="faq-item" data-keywords="Java 数据包 命令 不用 Mod">
+            <summary>能不能不写 Java，只用命令方块或数据包？</summary>
+            <p>可以。数据包与函数适合地图、冒险地图和规则 tweak，但<strong>无法添加全新物品类型或复杂 AI</strong>。需要新机制、新渲染或深度改动物品行为时，仍必须写 Mod。建议：简单玩法用数据包，系统级扩展用 Java。</p>
           </details>
         </div>
       </div>

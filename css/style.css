@@ -34,6 +34,9 @@
   --ai-banner-bg: linear-gradient(135deg, rgba(26, 39, 68, 0.9), rgba(28, 37, 48, 0.95));
   --ai-banner-border: rgba(120, 167, 255, 0.3);
   --ai-badge-bg: rgba(120, 167, 255, 0.15);
+  --java-banner-bg: linear-gradient(135deg, rgba(60, 45, 10, 0.85), rgba(28, 37, 48, 0.95));
+  --java-banner-border: rgba(252, 204, 0, 0.35);
+  --java-badge-bg: rgba(252, 204, 0, 0.15);
 }
 
 [data-theme="light"] {
@@ -58,6 +61,9 @@
   --ai-banner-bg: linear-gradient(135deg, rgba(184, 212, 255, 0.45), rgba(255, 255, 255, 0.95));
   --ai-banner-border: rgba(90, 140, 220, 0.35);
   --ai-badge-bg: rgba(90, 140, 220, 0.15);
+  --java-banner-bg: linear-gradient(135deg, rgba(255, 236, 170, 0.5), rgba(255, 255, 255, 0.95));
+  --java-banner-border: rgba(180, 130, 0, 0.35);
+  --java-badge-bg: rgba(252, 204, 0, 0.2);
 }
 
 /* ===== Reset & Base ===== */
@@ -1473,6 +1479,60 @@ kbd {
   font-size: 0.9rem;
   padding-top: 12px;
   border-top: 1px solid var(--border);
+}
+
+/* ===== Java Module ===== */
+.java-banner {
+  background: var(--java-banner-bg);
+  border-color: var(--java-banner-border);
+  margin-bottom: 32px;
+}
+
+.java-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--java-badge-bg);
+  color: var(--gold);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.java-banner h3 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.java-banner p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  max-width: 720px;
+}
+
+.java-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.java-mdk-guide .install-step-num,
+.java-step-num {
+  background: var(--java-badge-bg);
+  color: var(--gold);
+}
+
+.java-structure-card {
+  margin-bottom: 32px;
+}
+
+.java-flow {
+  margin-bottom: 32px;
+}
+
+.java-flow-step span {
+  background: var(--gold);
+  color: #1a1500;
 }
 
 /* ===== Google Ads ===== */
