@@ -320,6 +320,27 @@
 
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  // ===== Craft Nav Active Category on Scroll =====
+  var craftNavLinks = document.querySelectorAll('.craft-nav-link');
+  var craftCategoryHeadings = document.querySelectorAll('#craft .craft-category[id]');
+
+  function updateCraftNav() {
+    if (!craftNavLinks.length || !craftCategoryHeadings.length) return;
+    var scrollY = window.scrollY + 130;
+    var activeId = null;
+
+    craftCategoryHeadings.forEach(function (h) {
+      if (h.offsetTop <= scrollY) activeId = h.id;
+    });
+
+    craftNavLinks.forEach(function (link) {
+      link.classList.toggle('active', activeId && link.getAttribute('href') === '#' + activeId);
+    });
+  }
+
+  window.addEventListener('scroll', updateCraftNav, { passive: true });
+  updateCraftNav();
+
   // ===== FAQ: only one open at a time (optional UX) =====
   document.querySelectorAll('.faq-item').forEach(function (item) {
     item.addEventListener('toggle', function () {

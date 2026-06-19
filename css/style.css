@@ -798,6 +798,12 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
 }
 
+.craft-nav-link.active {
+  color: #fff;
+  border-color: var(--grass);
+  background: var(--grass-dark);
+}
+
 .craft-category {
   font-size: 1.1rem;
   color: var(--grass-light);
