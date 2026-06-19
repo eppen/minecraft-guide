@@ -1986,10 +1986,12 @@ maxTokens = 1000</code></pre>
                 </thead>
                 <tbody>
                   <tr><td><code>/steve spawn &lt;名字&gt;</code></td><td>召唤一名 Steve 代理</td></tr>
+                  <tr><td><code>/steve list</code></td><td>列出当前世界所有代理</td></tr>
+                  <tr><td><code>/steve kill &lt;名字&gt;</code></td><td>移除指定代理</td></tr>
                   <tr><td><kbd>K</kbd></td><td>打开指令面板，输入任务</td></tr>
                 </tbody>
               </table>
-              <p>每个 Steve 拥有独立记忆与任务上下文，可给不同代理分配不同工作。</p>
+              <p>每个 Steve 拥有独立记忆与任务上下文，可给不同代理分配不同工作。代理在生存模式下拥有生命值，可能被怪物击杀或摔落死亡，死亡后需重新召唤。</p>
             </div>
           </article>
         </div>
@@ -2046,6 +2048,10 @@ maxTokens = 1000</code></pre>
 
         <h3 class="craft-category">注意事项</h3>
         <div class="faq-list">
+          <details class="faq-item" data-keywords="Steve 模式 生存 创造 多人 服务器">
+            <summary>Steve 可以在哪些游戏模式下使用？</summary>
+            <p>Steve <strong>主要为生存模式设计</strong>——挖矿需要真实消耗工具耐久、建造需要消耗材料、战斗会受到伤害。这些限制在生存模式下让 AI 代理的自动化价值最大化。创造模式下虽然可以正常召唤，但无限资源与飞行能力使 AI 的优势不明显；冒险模式与旁观模式下代理无法正常执行方块操作。Steve 支持<strong>多人游戏</strong>：服务端安装后所有玩家均可召唤代理，但多人环境需注意 API 调用费用。</p>
+          </details>
           <details class="faq-item" data-keywords="Steve 限制 合成 crafting">
             <summary>当前有哪些局限？</summary>
             <p>1.4.0 之前版本<strong>无法合成工具</strong>；1.4.0+ 虽引入合成功能（<code>CraftItemAction</code>），但仍处于早期阶段，成功率取决于 LLM。单任务同步执行，挖矿时无法并行其他操作；重启后记忆会重置。智能程度取决于所选 LLM，GPT-3.5 偶有不合理决策，GPT-4 规划更好但更慢。</p>
