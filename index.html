@@ -102,6 +102,7 @@
         <button class="tag" data-search="下界">下界</button>
         <button class="tag" data-search="末影龙">末影龙</button>
         <button class="tag" data-search="Steve AI">Steve</button>
+        <button class="tag" data-search="Steve 安装">Steve 安装</button>
       </div>
     </section>
 
@@ -1912,25 +1913,125 @@
           </article>
         </div>
 
-        <h3 class="craft-category">安装与配置</h3>
+        <h3 class="craft-category" id="steve-install">安装与配置</h3>
         <div class="ai-setup-grid">
-          <div class="card ai-requirements" data-keywords="Steve 安装 环境 Forge">
+          <div class="card ai-requirements" data-keywords="Steve 安装 环境 Forge Java">
             <h4>环境要求</h4>
             <ul class="feature-list">
-              <li>Steve <strong>1.4.1</strong>（推荐）+ Minecraft <strong>1.20.1</strong> + Forge <strong>47.2.0</strong></li>
-              <li><strong>Java 17</strong>（1.20.1–1.20.4）；1.20.5+ 需 <strong>Java 21</strong></li>
-              <li>LLM API Key（OpenAI / Groq / Gemini 任选）</li>
+              <li><strong>游戏</strong>：Minecraft Java 版 <strong>1.20.1</strong>（推荐）+ Forge <strong>47.2.0</strong></li>
+              <li><strong>模组</strong>：Steve <strong>1.4.1</strong>（<a href="https://cdn.modrinth.com/data/hCJGLWON/versions/MiyL59Is/steve-ai-mod-1.4.1.jar" target="_blank" rel="noopener">Modrinth 下载</a>）</li>
+              <li><strong>Java</strong>：<strong>17</strong>（1.20.1–1.20.4）；1.20.5+ 需 <strong>21</strong></li>
+              <li><strong>API Key</strong>：OpenAI / Groq / Gemini 任选其一（Groq 有免费额度，适合试玩）</li>
+              <li><strong>不支持</strong>：基岩版、Fabric、NeoForge、Minecraft 1.21+</li>
             </ul>
           </div>
-          <div class="card ai-steps" data-keywords="Steve 配置 快速开始">
-            <h4>安装步骤</h4>
+          <div class="card ai-steps" data-keywords="Steve 配置 快速开始 验证">
+            <h4>快速开始（已有 Forge 环境）</h4>
             <ol class="step-list">
-              <li>从 <a href="https://cdn.modrinth.com/data/hCJGLWON/versions/MiyL59Is/steve-ai-mod-1.4.1.jar" target="_blank" rel="noopener">Modrinth 下载 1.4.1</a> 或 <a href="https://github.com/YuvDwi/Steve/releases" target="_blank" rel="noopener">GitHub Releases</a> 获取 JAR，放入 <code>mods</code> 文件夹</li>
-              <li>启动游戏一次，生成配置目录</li>
+              <li>下载 <code>steve-ai-mod-1.4.1.jar</code>，放入 Forge 实例的 <code>mods</code> 文件夹</li>
+              <li>启动游戏一次，生成 <code>config</code> 目录后退出</li>
               <li>复制 <code>config/steve-common.toml.example</code> 为 <code>config/steve-common.toml</code></li>
-              <li>填入 API Key 与模型配置</li>
-              <li>进游戏执行 <code>/steve spawn Bob</code> 召唤代理</li>
-              <li>按 <kbd>K</kbd> 打开指令面板，输入自然语言命令</li>
+              <li>填入 API Key 与 <code>[llm] provider</code>，保存后重启游戏</li>
+              <li>进入世界，执行 <code>/steve spawn Bob</code> 召唤代理</li>
+              <li>按 <kbd>K</kbd> 打开指令面板，输入自然语言命令（如 <code>"mine some iron"</code>）</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card ai-install-guide" data-keywords="Steve 安装 教程 Forge 启动器 HMCL PCL mods 文件夹 服务器">
+          <h4>完整安装教程</h4>
+          <p class="install-intro">Steve 是 <strong>Forge 模组</strong>，需先准备 Java 与 Forge 环境，再将模组 JAR 放入 <code>mods</code> 目录并配置 LLM API。以下以推荐组合 <strong>MC 1.20.1 + Forge 47.2.0 + Java 17 + Steve 1.4.1</strong> 为例。</p>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">1</span> 安装 Java</h5>
+            <ul class="feature-list">
+              <li>MC 1.20.1 需要 <strong>Java 17</strong>（Temurin / Oracle JDK 均可）</li>
+              <li>下载：<a href="https://adoptium.net/temurin/releases/?version=17" target="_blank" rel="noopener">Eclipse Temurin 17</a></li>
+              <li>安装后在终端执行 <code>java -version</code>，确认输出含 <code>17</code></li>
+              <li>使用 HMCL、PCL 等启动器时，可在启动器设置中指定 Java 17 路径，避免混用 Java 8 或 21</li>
+            </ul>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">2</span> 安装 Minecraft 与 Forge</h5>
+            <p class="install-method-label">方式 A：第三方启动器（推荐国内用户）</p>
+            <ul class="feature-list">
+              <li><strong>HMCL</strong>：新建实例 → 选择 <strong>1.20.1</strong> → 版本管理 → 安装 <strong>Forge 47.2.0</strong>（或 47.x 最新）</li>
+              <li><strong>PCL2</strong>：下载游戏 → 版本选择 <strong>1.20.1</strong> → 模组加载器选 <strong>Forge</strong> → 自动安装</li>
+              <li><strong>Prism Launcher / MultiMC</strong>：创建实例 → 安装 Forge → 选择 47.2.0</li>
+            </ul>
+            <p class="install-method-label">方式 B：官方启动器</p>
+            <ol class="step-list">
+              <li>先安装并运行一次 Minecraft <strong>1.20.1</strong> 原版</li>
+              <li>从 <a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html" target="_blank" rel="noopener">Forge 官网</a> 下载 <strong>47.2.0</strong> 安装器（Installer）</li>
+              <li>运行安装器，选择 <strong>Install client</strong>，确认游戏目录后安装</li>
+              <li>官方启动器中选择 <strong>forge-1.20.1-47.2.0</strong> 配置文件启动</li>
+            </ol>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">3</span> 下载 Steve 模组</h5>
+            <ul class="feature-list">
+              <li>推荐直接下载：<a href="https://cdn.modrinth.com/data/hCJGLWON/versions/MiyL59Is/steve-ai-mod-1.4.1.jar" target="_blank" rel="noopener"><code>steve-ai-mod-1.4.1.jar</code></a></li>
+              <li>也可在 <a href="https://modrinth.com/mod/steve-ai/versions" target="_blank" rel="noopener">Modrinth</a> 或 <a href="https://github.com/YuvDwi/Steve/releases" target="_blank" rel="noopener">GitHub Releases</a> 获取</li>
+              <li>文件名须为 <code>.jar</code>，<strong>不要解压</strong>；勿与 Fabric 版 Mod 混放</li>
+            </ul>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">4</span> 放入 mods 文件夹</h5>
+            <p>将 JAR 复制到当前 Forge 实例的 <code>mods</code> 目录（不是 <code>resourcepacks</code> 或 <code>shaderpacks</code>）：</p>
+            <table class="ore-table version-table install-path-table">
+              <thead>
+                <tr><th>环境</th><th>mods 路径</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Windows（官方）</td><td><code>%appdata%\.minecraft\mods\</code></td></tr>
+                <tr><td>macOS</td><td><code>~/Library/Application Support/minecraft/mods/</code></td></tr>
+                <tr><td>Linux</td><td><code>~/.minecraft/mods/</code></td></tr>
+                <tr><td>HMCL / PCL 独立目录</td><td>启动器 → 版本设置 → 打开游戏目录 → <code>mods</code></td></tr>
+              </tbody>
+            </table>
+            <p class="tip">💡 启动器会为每个版本创建独立文件夹，务必把 JAR 放进<strong>正在使用的 1.20.1 Forge 实例</strong>的 <code>mods</code>，而非全局或其他版本目录。</p>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">5</span> 首次启动与 API 配置</h5>
+            <ol class="step-list">
+              <li>用 Forge 配置启动游戏，主菜单 → Mods 列表中应能看到 <strong>Steve AI</strong></li>
+              <li>进入任意单人世界（或服务器），玩几秒后退出，以生成配置文件</li>
+              <li>在游戏目录下找到 <code>config/steve-common.toml.example</code></li>
+              <li>复制并重命名为 <code>config/steve-common.toml</code></li>
+              <li>编辑配置：设置 <code>[llm] provider</code>，并在对应段落填入 API Key（见下方示例）</li>
+              <li>保存后<strong>完全重启</strong>游戏（仅退出世界不够，需关闭客户端）</li>
+            </ol>
+            <p class="install-method-label">API Key 获取</p>
+            <ul class="feature-list">
+              <li><strong>Groq</strong>（推荐试玩）：<a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com</a> 注册并创建 Key</li>
+              <li><strong>OpenAI</strong>：<a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com</a></li>
+              <li><strong>Gemini</strong>：<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a></li>
+            </ul>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">6</span> 验证安装</h5>
+            <ol class="step-list">
+              <li>进入生存世界，打开聊天栏，执行 <code>/steve spawn Bob</code></li>
+              <li>若成功，附近会出现名为 Bob 的 Steve 代理实体</li>
+              <li>按 <kbd>K</kbd> 打开指令面板，输入 <code>"follow me"</code> 或 <code>"mine 10 cobblestone"</code></li>
+              <li>代理开始移动或执行动作，即表示 LLM 与模组均工作正常</li>
+            </ol>
+            <p class="tip">💡 若按 <kbd>K</kbd> 无反应，检查是否处于创造/生存模式（非旁观）；若代理不动，优先检查 API Key 与 <code>logs/latest.log</code> 中的 LLM 报错。</p>
+          </div>
+
+          <div class="install-step">
+            <h5><span class="install-step-num">7</span> 多人服务器安装（可选）</h5>
+            <ol class="step-list">
+              <li>下载 <a href="https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html" target="_blank" rel="noopener">Forge 1.20.1 服务端</a>（47.2.0），生成 <code>run.sh</code> / <code>run.bat</code> 并首次启动</li>
+              <li>将 <code>steve-ai-mod-1.4.1.jar</code> 放入服务端 <code>mods</code> 文件夹</li>
+              <li>首次启动后，在服务端目录配置 <code>config/steve-common.toml</code>（与客户端相同）</li>
+              <li>客户端也需安装相同版本的 Forge + Steve，否则无法连接</li>
+              <li>服务器上所有有权限的玩家均可 <code>/steve spawn</code>；API 费用由服务端配置承担，注意用量</li>
             </ol>
           </div>
         </div>
@@ -2063,6 +2164,14 @@ maxTokens = 1000</code></pre>
           <details class="faq-item" data-keywords="Steve API 费用 密钥">
             <summary>API 费用如何控制？</summary>
             <p>每次指令会调用 LLM，频繁下达复杂任务会产生 API 费用。建议先用 Groq 免费额度测试；简单任务用短句；多代理协作时注意同时发起的请求数量。勿将含 API Key 的配置文件上传到公开仓库。</p>
+          </details>
+          <details class="faq-item" data-keywords="Steve 安装 失败 崩溃 打不开">
+            <summary>安装后游戏崩溃或 Mod 列表看不到 Steve？</summary>
+            <p>常见原因：<strong>Forge 与 MC 版本不匹配</strong>（如 1.20.1 用了 1.20.4 的 Forge）；<strong>Java 版本错误</strong>（1.20.1 需 Java 17）；JAR 放错目录（应在 Forge 实例的 <code>mods</code>，不是 <code>versions</code>）；与其他 Mod 冲突。查看 <code>logs/latest.log</code> 末尾报错，或暂时移出其他 Mod 仅保留 Steve 测试。</p>
+          </details>
+          <details class="faq-item" data-keywords="Steve 安装 配置 不工作 API Key">
+            <summary>代理召唤成功但不执行任务？</summary>
+            <p>多为 <strong>API 配置问题</strong>：确认 <code>steve-common.toml</code> 已从 example 复制、<code>provider</code> 与填 Key 的段落一致、Key 有效且有余额。修改配置后需<strong>重启整个游戏</strong>。网络需能访问对应 API（Groq/OpenAI/Google）；国内用户若 OpenAI 不可用，可改用 Groq 或 Gemini。</p>
           </details>
         </div>
       </div>
